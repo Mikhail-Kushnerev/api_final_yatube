@@ -31,6 +31,7 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='comments')
@@ -52,6 +53,7 @@ class Follow(models.Model):
         related_name='following',
         on_delete=models.CASCADE
     )
+
     class Meta:
         constraints = [
             models.UniqueConstraint(

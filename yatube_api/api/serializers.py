@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from posts.models import Comment, Follow, Group, Post
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
@@ -32,10 +33,6 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = Comment
         read_only_fields = ('post',)
-
-
-
-from django.shortcuts import get_object_or_404
 
 
 class FollowSerializer(serializers.ModelSerializer):

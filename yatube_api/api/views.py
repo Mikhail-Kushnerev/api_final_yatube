@@ -1,9 +1,7 @@
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from posts.models import Follow, Group, Post
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
-from rest_framework.generics import ListCreateAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -24,11 +22,13 @@ class PostViewSet(viewsets.ModelViewSet):
             author=self.request.user
         )
 
+
 class GroupVeiwSets(viewsets.ReadOnlyModelViewSet):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
 
 class CommentViewSet(viewsets.ModelViewSet):
 
@@ -51,6 +51,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             id=self.kwargs.get('post_id')
         )
         return post.comments.all()
+
 
 class FollowViewSet(viewsets.ModelViewSet):
 
