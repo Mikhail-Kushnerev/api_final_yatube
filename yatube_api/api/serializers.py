@@ -34,7 +34,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         read_only_fields = ('post',)
 
-
+from rest_framework.response import Response
+from rest_framework import status
 class FollowSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(
         read_only=True,
@@ -54,8 +55,9 @@ class FollowSerializer(serializers.ModelSerializer):
                 queryset=Follow.objects.all(),
                 fields=('user', 'following')
             ),
-            UniqueTogetherValidator(
-                queryset=Follow.objects.all(),
-                fields=('user', 'user')
-            )
         ]
+
+    def validate_following(self, value):
+        if self.context['request'].user == value:
+            raise serializers.ValidationError("На себя не подписываются")
+        return value
