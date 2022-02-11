@@ -34,8 +34,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         read_only_fields = ('post',)
 
-from rest_framework.response import Response
-from rest_framework import status
+
 class FollowSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(
         read_only=True,
