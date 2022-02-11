@@ -34,7 +34,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     serializer_class = CommentSerializer
     permission_classes = [IsOwnerOrReady]
-    # pagination_class = None
 
     def perform_create(self, serializer):
         serializer.save(
