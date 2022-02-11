@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
 from posts.models import Comment, Follow, Group, Post
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
@@ -22,6 +21,7 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = '__all__'
+
 
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(

@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from .models import Follow, Group, Post
 
-# Register your models here.
 
 @admin.register(Post)
 class PostwAdmin(admin.ModelAdmin):
